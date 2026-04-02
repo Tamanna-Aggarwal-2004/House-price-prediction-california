@@ -7,9 +7,12 @@ import numpy as np
 # -----------------------------
 # Load saved files
 # -----------------------------
+# -----------------------------
 if not os.path.exists("Forestmodel.pkl"):
-    url = "https://drive.google.com/file/d/1wwU-BlXKmCLhXbczQCINxPDBAgtcCVa9/view?usp=drive_link"
+    url = "https://drive.google.com/uc?id=1wwU-BlXKmCLhXbczQCINxPDBAgtcCVa9"
     gdown.download(url, "Forestmodel.pkl", quiet=False)
+
+
 model = joblib.load("Forestmodel.pkl")
 scaler = joblib.load("scaler.pkl")
 columns = joblib.load("columns.pkl")
