@@ -9,11 +9,22 @@ import numpy as np
 # -----------------------------
 # -----------------------------
 if not os.path.exists("Forestmodel.pkl"):
-    url = "https://drive.google.com/uc?id=1wwU-BlXKmCLhXbczQCINxPDBAgtcCVa9"
-    gdown.download(url, "Forestmodel.pkl", quiet=False)
+    file_id = "1wwU-BlXKmCLhXbczQCINxPDBAgtcCVa9"
+    url = f"https://drive.google.com/uc?id={file_id}"
+    
+    gdown.download(url, "Forestmodel.pkl", quiet=False, fuzzy=True)
 
+# Check file
+st.write("Model exists:", os.path.exists("Forestmodel.pkl"))
 
-model = joblib.load("Forestmodel.pkl")
+# -----------------------------
+# Load model safely
+# -----------------------------
+try:
+    model = joblib.load("Forestmodel.pkl")
+except Exception as e:
+    st.error("Model loading failed")
+    st.write(e)
 scaler = joblib.load("scaler.pkl")
 columns = joblib.load("columns.pkl")
 
